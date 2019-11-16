@@ -1,0 +1,124 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Numerical Calculus Toolbox</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="//polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/lib/calculus.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mathjs@6.2.3/dist/math.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/en">MathTool</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/en">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Language</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" target="_blank" href="/en">English</a>
+                            <a class="dropdown-item" target="_blank" href="/zh-cn">Chinese(Simpified)</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-5"></div>
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-6">
+                    <h1>Numerical Calculus Toolbox</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/en">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/en">Tools available</a></li>
+                        <li class="breadcrumb-item active">Numerical Calculus Toolbox</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3"></div>
+        <div class="bs-docs-section">
+            <div class="row">
+                <div class="col-lg-6">
+                    <fieldset class="form-group">
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select class="custom-select" id="typeSelect" onchange="typeChoiceListener()">
+                                <option value="1">Numerical Differential</option>
+                                <option value="2">Numerical Integration</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Expression</label>
+                            <input type="text" class="form-control" id="expressionInput" placeholder="e.g. sin(x)">
+                        </div>
+                        <div class="form-group">
+                            <label>Variable</label>
+                            <input type="text" class="form-control" id="variableInput" placeholder="e.g. x">
+                        </div>
+                        <div class="form-group">
+                            <label id="firstPointLabel">Point</label>
+                            <input type="text" class="form-control" id="pointInput">
+                        </div>
+                        <div class="form-group" id="secondPointZone"></div>
+                        <div class="form-group">
+                            <label>Result</label>
+                            <input class="form-control" type="text" id="resultOutput" readonly="">
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="advancedOptions"
+                                    onclick="advancedOptionsListener()">
+                                <label class="custom-control-label" for="advancedOptions">Advanced options</label>
+                            </div>
+                        </div>
+                        <div class="form-group" id="advancedInputZone"></div>
+                        <div class="form-group" id="invalidMessageZone"></div>
+                        <button type="submit" class="btn btn-primary" id="calcButton"
+                            onclick="calculusCalculate()">Calculate</button>
+                    </fieldset>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Help</h4>
+                            <p class="card-text">This toolbox calculate the differential through the differences of a
+                                point,
+                                and applies Romberg method to calculate the integration.</p>
+                            <p class="card-text">Defaultly, the error limitation is set as \( 1 \times 10^{-6} \). You
+                                can modify the
+                                setting
+                                through the advanced options.</p>
+                            <p class="card-text">Please follow the placeholder to fill the form on the left. This
+                                toolbox applies <a href="https://mathjs.org">math.js</a> to evaluate expressions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
