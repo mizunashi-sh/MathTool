@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Numerical Calculus Toolbox</title>
+    <title>Interpolation</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,7 +10,7 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="/js/bootstrap.js"></script>
-    <script src="/lib/calculus.js"></script>
+    <script src="/lib/interpolation.js"></script>
     <script src="//cdn.jsdelivr.net/npm/mathjs@6.2.3/dist/math.min.js"></script>
     <link rel="icon" href="/images/favicon.png" />
 </head>
@@ -49,11 +49,11 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-lg-8 col-md-7 col-sm-6">
-                    <h1>Numerical Calculus Toolbox</h1>
+                    <h1>Interpolation</h1>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/en">Home</a></li>
                         <li class="breadcrumb-item"><a href="/en">Tools available</a></li>
-                        <li class="breadcrumb-item active">Numerical Calculus Toolbox</li>
+                        <li class="breadcrumb-item active">Interpolation</li>
                     </ol>
                 </div>
             </div>
@@ -64,40 +64,23 @@
                 <div class="col-lg-6">
                     <fieldset class="form-group">
                         <div class="form-group">
-                            <label>Type</label>
-                            <select class="custom-select" id="typeSelect" onchange="typeChoiceListener()">
-                                <option value="1">Numerical Differential</option>
-                                <option value="2">Numerical Integration</option>
-                            </select>
+                            <label>X Vector</label>
+                            <input type="text" class="form-control" id="xVectorInput" placeholder="e.g. 1 2 3 4 5 6 7">
                         </div>
                         <div class="form-group">
-                            <label>Expression</label>
-                            <input type="text" class="form-control" id="expressionInput" placeholder="e.g. sin(x)">
+                            <label>Y Vector</label>
+                            <input type="text" class="form-control" id="yVectorInput" placeholder="e.g. 0.368 0.135 0.05 0.018 0.007 0.002 0.001">
                         </div>
                         <div class="form-group">
-                            <label>Variable</label>
-                            <input type="text" class="form-control" id="variableInput" placeholder="e.g. x">
+                            <label>Query Points</label>
+                            <input type="text" class="form-control" id="queryPointsInput" placeholder="e.g. 3.8 6.15">
                         </div>
-                        <div class="form-group">
-                            <label id="firstPointLabel">Point</label>
-                            <input type="text" class="form-control" id="pointInput">
-                        </div>
-                        <div class="form-group" id="secondPointZone"></div>
                         <div class="form-group">
                             <label>Result</label>
                             <input class="form-control" type="text" id="resultOutput" readonly="">
                         </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="advancedOptions"
-                                    onclick="advancedOptionsListener()">
-                                <label class="custom-control-label" for="advancedOptions">Advanced options</label>
-                            </div>
-                        </div>
-                        <div class="form-group" id="advancedInputZone"></div>
-                        <div class="form-group" id="invalidMessageZone"></div>
-                        <button type="submit" class="btn btn-primary" id="calcButton"
-                            onclick="calculusCalculate()">Calculate</button>
+                        <div class="form-group" id="errorZone"></div>
+                        <button type="submit" class="btn btn-primary" id="calcButton" onclick="calcOnclick()">Calculate</button>
                     </fieldset>
                 </div>
                 <div class="col-lg-1"></div>
@@ -105,15 +88,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Manual</h4>
-                            <p class="card-text">This toolbox calculate the differential through the differences of a
-                                point,
-                                and applies Romberg method to calculate the integration.</p>
-                            <p class="card-text">Defaultly, the error limitation is set as \( 1 \times 10^{-6} \). You
-                                can modify the
-                                setting
-                                through the advanced options.</p>
-                            <p class="card-text">Please follow the placeholder to fill the form. This
-                                toolbox applies <a href="https://mathjs.org">math.js</a> to evaluate expressions.</p>
+                            <p class="card-text">This tool applies the Lagrange method to interpolate. Please input the x vector, y vector and query points separated with a blank space, and make sure the x vector and y vector have the same length.</p>
+                            <p class="card-text">Please attention, with the Lagrange method, the <a href="https://en.wikipedia.org/wiki/Runge%27s_phenomenon">Runge's Phenomenon</a> might appear under some circumstances.</p>
                         </div>
                     </div>
                 </div>
@@ -121,5 +97,3 @@
         </div>
     </div>
 </body>
-
-</html>

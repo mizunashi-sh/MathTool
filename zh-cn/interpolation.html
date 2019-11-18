@@ -1,0 +1,99 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>插值</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="//polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/lib/interpolation.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mathjs@6.2.3/dist/math.min.js"></script>
+    <link rel="icon" href="/images/favicon.png" />
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/zh-cn">MathTool</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/zh-cn">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">关于</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Language</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" target="_blank" href="/en">English</a>
+                            <a class="dropdown-item" target="_blank" href="/zh-cn">Chinese(Simpified)</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-5"></div>
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-6">
+                    <h1>插值</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/zh-cn">首页</a></li>
+                        <li class="breadcrumb-item"><a href="/zh-cn">可用工具</a></li>
+                        <li class="breadcrumb-item active">插值</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3"></div>
+        <div class="bs-docs-section">
+            <div class="row">
+                <div class="col-lg-6">
+                    <fieldset class="form-group">
+                        <div class="form-group">
+                            <label>X向量</label>
+                            <input type="text" class="form-control" id="xVectorInput" placeholder="e.g. 1 2 3 4 5 6 7">
+                        </div>
+                        <div class="form-group">
+                            <label>Y向量</label>
+                            <input type="text" class="form-control" id="yVectorInput" placeholder="e.g. 0.368 0.135 0.05 0.018 0.007 0.002 0.001">
+                        </div>
+                        <div class="form-group">
+                            <label>查找点</label>
+                            <input type="text" class="form-control" id="queryPointsInput" placeholder="e.g. 3.8 6.15">
+                        </div>
+                        <div class="form-group">
+                            <label>结果</label>
+                            <input class="form-control" type="text" id="resultOutput" readonly="">
+                        </div>
+                        <div class="form-group" id="errorZone"></div>
+                        <button type="submit" class="btn btn-primary" id="calcButton" onclick="calcOnclick()">计算</button>
+                    </fieldset>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">帮助</h4>
+                            <p class="card-text">这个工具使用拉格朗日方法进行插值。请输入用空格隔开的x向量，y向量和查询点，并确保x向量和y向量具有相同的长度。</p>
+                            <p class="card-text">请注意，在使用拉格朗日方法进行插值时，可能会出现<a href="https://en.wikipedia.org/wiki/Runge%27s_phenomenon">龙格现象</a>。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
