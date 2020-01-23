@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>数值微积分计算器</title>
+    <title>Numerical solution of ODE</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,7 +10,7 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="/js/bootstrap.js"></script>
-    <script src="/lib/calculus.js"></script>
+    <script src="/lib/ode.js"></script>
     <script src="//cdn.jsdelivr.net/npm/mathjs@6.2.3/dist/math.min.js"></script>
     <link rel="icon" href="/images/favicon.png" />
 </head>
@@ -18,7 +18,7 @@
 <body>
     <div class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/zh-cn">MathTool</a>
+            <a class="navbar-brand" href="/en">MathTool</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
                 aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -27,16 +27,16 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/zh-cn">首页</a>
+                        <a class="nav-link" href="/en">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">关于</a>
+                        <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Language</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/en/numerical-calculus.html">English</a>
-                            <a class="dropdown-item" href="numerical-calculus.html">Chinese(Simpified)</a>
+                            <a class="dropdown-item" href="ode.html">English</a>
+                            <a class="dropdown-item" href="/zh-cn/ode.html">Chinese(Simpified)</a>
                         </div>
                     </li>
                 </ul>
@@ -49,11 +49,11 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-lg-8 col-md-7 col-sm-6">
-                    <h1>数值微积分计算器</h1>
+                    <h1>Numerical solution of ODE</h1>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/zh-cn">首页</a></li>
-                        <li class="breadcrumb-item"><a href="/zh-cn">可用工具</a></li>
-                        <li class="breadcrumb-item active">数值微积分计算器</li>
+                        <li class="breadcrumb-item"><a href="/en">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/en">Tools available</a></li>
+                        <li class="breadcrumb-item active">Numerical solutions of ODE</li>
                     </ol>
                 </div>
             </div>
@@ -64,50 +64,40 @@
                 <div class="col-lg-6">
                     <fieldset class="form-group">
                         <div class="form-group">
-                            <label>计算类型</label>
-                            <select class="custom-select" id="typeSelect" onchange="typeChoiceListener()">
-                                <option value="1">数值微分</option>
-                                <option value="2">数值积分</option>
-                            </select>
+                            <label>Ordinary Differential Equation \( \frac{\mathrm{d}y}{\mathrm{d}x} \)</label>
+                            <input type="text" class="form-control" id="equationInput" placeholder="e.g. x^2+y^2">
                         </div>
                         <div class="form-group">
-                            <label>函数表达式</label>
-                            <input type="text" class="form-control" id="expressionInput" placeholder="e.g. sin(x)">
+                            <label class="col-form-label" for="inputDefault">Start Point</label>
+                            <input type="text" class="form-control" placeholder="e.g. 1" id="startPointInput">
                         </div>
                         <div class="form-group">
-                            <label>函数变量</label>
-                            <input type="text" class="form-control" id="variableInput" placeholder="e.g. x">
+                            <label class="col-form-label" for="inputDefault">Function Value at the Start Point</label>
+                            <input type="text" class="form-control" placeholder="e.g. 3" id="startPointValueInput">
                         </div>
                         <div class="form-group">
-                            <label id="firstPointLabel">Point</label>
-                            <input type="text" class="form-control" id="pointInput">
-                        </div>
-                        <div class="form-group" id="secondPointZone"></div>
-                        <div class="form-group">
-                            <label>结果</label>
-                            <input class="form-control" type="text" id="resultOutput" readonly="">
+                            <label class="col-form-label" for="inputDefault">End Point</label>
+                            <input type="text" class="form-control" placeholder="e.g. 2" id="endPointInput">
                         </div>
                         <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="advancedOptions"
-                                    onclick="advancedOptionsListener()">
-                                <label class="custom-control-label" for="advancedOptions">高级选项</label>
-                            </div>
+                            <label class="col-form-label" for="inputDefault">Step Width</label>
+                            <input type="text" class="form-control" placeholder="e.g. 0.01" id="stepWidthInput">
                         </div>
-                        <div class="form-group" id="advancedInputZone"></div>
+                        <div class="form-group">
+                            <label for="exampleTextarea">Result</label>
+                            <textarea class="form-control" id="resultOutput" rows="3" readonly=""></textarea>
+                        </div>
                         <div class="form-group" id="invalidMessageZone"></div>
-                        <button type="submit" class="btn btn-primary" id="calcButton"
-                            onclick="calculusCalculate()">计算</button>
+                        <button type="submit" class="btn btn-primary" id="calcButton" onclick="calcOnclick()">Calculate</button>
                     </fieldset>
                 </div>
                 <div class="col-lg-1"></div>
                 <div class="col-lg-5">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">帮助</h4>
-                            <p class="card-text">这个计算器通过差商近似计算数值微分，并使用Romberg算法计算数值积分。</p>
-                            <p class="card-text">默认的最大误差限制为\( 1 \times 10^{-6} \)。 你可在高级选项中更改该设定。</p>
-                            <p class="card-text">请根据输入框内的提示文本填写表单。此计算器使用<a href="https://mathjs.org">math.js</a>解析表达式。</p>
+                            <h4 class="card-title">Manual</h4>
+                            <p class="card-text">This tool applies the classic Runge-Kutta method to solving initial problems of ODE which fits the format of \( \frac{\mathrm{d}y}{\mathrm{d}x}=f(x,y) \).</p>
+                            <p class="card-text">Please follow the hints to fill the form. This toolbox applies <a href="https://mathjs.org">math.js</a> to evaluate expressions.</p>
                         </div>
                     </div>
                 </div>
