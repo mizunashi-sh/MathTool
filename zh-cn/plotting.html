@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>函数图像</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="//polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/lib/plotting.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mathjs@6.2.3/dist/math.min.js"></script>
+    <script src="/lib/echarts/echarts.min.js"></script>
+    <script src="/lib/echarts/echarts-gl.min.js"></script>
+    <link rel="icon" href="/images/favicon.png" />
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/zh-cn">MathTool</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/zh-cn">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">关于</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Language</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/en/plotting.html">English</a>
+                            <a class="dropdown-item" href="plotting.html">Chinese(Simpified)</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-5"></div>
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-6">
+                    <h1>函数图像</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/zh-cn">首页</a></li>
+                        <li class="breadcrumb-item"><a href="/zh-cn">可用工具</a></li>
+                        <li class="breadcrumb-item active">函数图像</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3"></div>
+        <div class="bs-docs-section">
+            <div class="row">
+                <div class="col-lg-6">
+                    <fieldset class="form-group">
+                        <div class="form-group">
+                            <label>函数类型</label>
+                            <select class="custom-select" id="typeSelect" onchange="typeChoiceListener()">
+                                <option value="1">一元函数</option>
+                                <option value="2">二元函数</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label id="expressionInputLabel">Function expression y=f(x)</label>
+                            <input type="text" class="form-control" id="expressionInput" placeholder="e.g. sin(x)">
+                        </div>
+                        <div class="form-group">
+                            <label id="xAxisStart">Start Point of X Axis</label>
+                            <input type="text" class="form-control" id="xAxisStartInput">
+                        </div>
+                        <div class="form-group">
+                            <label id="xAxisEnd">End Point of X Axis</label>
+                            <input type="text" class="form-control" id="xAxisEndInput">
+                        </div>
+                        <div class="form-group" id="yAxisStartZone"></div>
+                        <div class="form-group" id="yAxisEndZone"></div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="advancedOptions">
+                                <label class="custom-control-label" for="advancedOptions" onclick="advancedOptionsListener()">高级选项</label>
+                            </div>
+                        </div>
+                        <div class="form-group" id="advancedInputZone" style="display: none;">
+                            <label id="stepWidth">取样间隔</label>
+                            <input type="text" class="form-control" id="stepWidthInput" value="0.01">
+                        </div>
+                        <div class="form-group" id="invalidMessageZone" style="display: none;">
+                            <p style="color:#EB6864;font-size:15px;">It seems that what you input is invalid. Try again.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="plotButton" onclick="plot()">作图</button>
+                    </fieldset>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">帮助</h4>
+                            <p class="card-text">这个工具可以绘制一元显函数\( y=f(x) \)以及二元显函数\( z=f(x,y) \)的图像或者曲面。</p>
+                            <p class="card-text">请根据提示文本填写表单。此工具使用<a href="https://mathjs.org">math.js</a>解析表达式，并使用<a href="https://echarts.apache.org/en/index.html">echarts</a>绘图。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
