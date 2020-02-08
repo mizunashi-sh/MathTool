@@ -7,5 +7,5 @@ This tool is running totally on the front-end, which means the code to do the ca
 Currently this tool provides the following tools:
 + Numerical Differential and Integration
 + Intetpolation
-+ Numerical Solutions og ODE
++ Numerical Solutions of ODE
 + Function Graph
