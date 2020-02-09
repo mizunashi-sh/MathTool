@@ -9,3 +9,4 @@ Currently this tool provides the following tools:
 + Intetpolation
 + Numerical Solutions of ODE
 + Function Graph
++ Linear Equations
