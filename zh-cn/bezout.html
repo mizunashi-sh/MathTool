@@ -1,0 +1,106 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Bezout</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="//polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/lib/bezout.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mathjs@6.2.3/dist/math.min.js"></script>
+    <link rel="icon" href="/images/favicon.png" />
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/zh-cn">MathTool</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/zh-cn">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">关于</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Language</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/en/bezout.html">English</a>
+                            <a class="dropdown-item" href="bezout.html">Chinese(Simpified)</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-5"></div>
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-6">
+                    <h1>Bezout</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/zh-cn">首页</a></li>
+                        <li class="breadcrumb-item"><a href="/zh-cn">可用工具</a></li>
+                        <li class="breadcrumb-item active">Bezout</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3"></div>
+        <div class="bs-docs-section">
+            <div class="row">
+                <div class="col-lg-6">
+                    <fieldset class="form-group">
+                        <div class="form-group">
+                            <label>类型</label>
+                            <select class="custom-select" id="typeSelect">
+                                <option value="1">最大公约数</option>
+                                <option value="2">最小公倍数</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>整数a</label>
+                            <input type="text" class="form-control" id="aNumberInput" placeholder="e.g. 114514">
+                        </div>
+                        <div class="form-group">
+                            <label>整数b</label>
+                            <input type="text" class="form-control" id="bNumberInput" placeholder="e.g. 1919810">
+                        </div>
+                        <div class="form-group">
+                            <label>结果</label>
+                            <textarea class="form-control" rows="3" readonly="" id="resultOutput"></textarea>
+                        </div>
+                        <div class="form-group" id="errorZone" style="display: none;">
+                            <p style="color:#EB6864;font-size:15px;">It seems that what you input is invalid. Try again.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary" onclick="calcOnClick()">计算</button>
+                    </fieldset>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">帮助</h4>
+                            <p class="card-text">这个工具可以计算两个整数的最大公约数和最小公倍数，并用线性组合表示它们的最大公约数。</p>
+                            <p class="card-text">请根据提示文本填写表单。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
