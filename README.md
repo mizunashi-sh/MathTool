@@ -10,3 +10,4 @@ Currently this tool provides the following tools:
 + Numerical Solutions of ODE
 + Function Graph
 + Linear Equations
++ Bezout
