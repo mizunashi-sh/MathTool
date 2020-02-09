@@ -6,7 +6,7 @@ This tool is running totally on the front-end, which means the code to do the ca
 ## Tools available
 Currently this tool provides the following tools:
 + Numerical Differential and Integration
-+ Intetpolation
++ Interpolation
 + Numerical Solutions of ODE
 + Function Graph
 + Linear Equations
