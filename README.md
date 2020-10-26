@@ -11,3 +11,7 @@ Currently this tool provides the following tools:
 + Function Graph
 + Linear Equations
 + Bezout
+
+
+
+The developer of this tool is a gay!!!
